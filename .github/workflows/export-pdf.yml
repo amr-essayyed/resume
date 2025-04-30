@@ -1,0 +1,35 @@
+name: Export HTML to PDF
+
+on:
+  push:
+    paths:
+      - 'index.html'
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Puppeteer
+        run: |
+          npm init -y
+          npm install puppeteer
+
+      - name: Generate PDF from HTML
+        run: |
+          node export.js
+
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: exported-pdf
+          path: Amr_Essayyed_CV.pdf
