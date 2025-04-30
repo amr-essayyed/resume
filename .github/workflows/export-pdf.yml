@@ -29,7 +29,7 @@ jobs:
           node export.js
 
       - name: Upload PDF as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.3
         with:
           name: exported-pdf
           path: Amr_Essayyed_CV.pdf
